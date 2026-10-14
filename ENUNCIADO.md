@@ -27,6 +27,8 @@ Você assumiu a manutenção da TechStore, uma loja virtual em React que já est
 >
 > Ah, e o time de suprimentos avisou que alguns produtos ainda estão sem preço definido. Esses não podem ser vendidos por enquanto. Assim que o preço chegar, o estoque já está separado.
 
+## FEITO
+
 ---
 
 ## Obrigatório 2: Produtos esgotados
@@ -35,9 +37,13 @@ Você assumiu a manutenção da TechStore, uma loja virtual em React que já est
 
 > Os clientes ficam frustrados quando encontram um produto que gostaram e ele está esgotado. A partir de agora, produto esgotado não aparece mais na loja.
 
+## FEITO
+
 **Mensagem do time de estoque, 8 de outubro**
 
 > Vimos o pedido do comercial sobre os esgotados. Só lembrando que o marketing divulga links de produtos nas redes sociais, e o cliente que chega por um desses links num produto esgotado precisa conseguir pedir para ser avisado quando ele voltar. E a gente quer ver, na área interna, quem está esperando cada produto, com nome e e-mail, para avisar quando chegar e decidir o que repor primeiro.
+
+## FEITO
 
 ---
 

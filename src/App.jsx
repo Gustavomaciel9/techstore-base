@@ -17,6 +17,7 @@ export default function App() {
   const [carrinho, setCarrinho] = useState([])
   const [clientes, setClientes] = useState([])
   const [clienteAtualId, setClienteAtualId] = useState(null)
+  const [listaEspera, setListaEspera] = useState([])
 
   useEffect(() => {
     buscarProdutos()
@@ -31,6 +32,13 @@ export default function App() {
   }, [])
 
   function adicionarAoCarrinho(produto) {
+    const preco = Number(produto?.price)
+    const estoque = Number(produto?.estoque ?? 0)
+
+    if (!Number.isFinite(preco) || preco < 0 || estoque <= 0) {
+      return
+    }
+
     setCarrinho(carrinho.concat(produto))
   }
 
@@ -46,6 +54,19 @@ export default function App() {
         return true
       })
     )
+  }
+
+  function registrarEspera({ produtoId, produtoNome, nome, email }) {
+    setListaEspera((atual) => [
+      ...atual,
+      {
+        id: `${produtoId}-${Date.now()}`,
+        produtoId,
+        produtoNome,
+        nome,
+        email,
+      },
+    ])
   }
 
   const clienteAtual = clientes.find((cliente) => cliente.id === clienteAtualId)
@@ -67,7 +88,14 @@ export default function App() {
             />
             <Route
               path="/produto/:id"
-              element={<PaginaProduto produtos={produtos} onAdicionar={adicionarAoCarrinho} />}
+              element={
+                <PaginaProduto
+                  produtos={produtos}
+                  clienteAtual={clienteAtual}
+                  onAdicionar={adicionarAoCarrinho}
+                  onRegistrarEspera={registrarEspera}
+                />
+              }
             />
             <Route
               path="/carrinho"
@@ -81,7 +109,10 @@ export default function App() {
                 />
               }
             />
-            <Route path="/estoque" element={<Estoque produtos={produtos} />} />
+            <Route
+              path="/estoque"
+              element={<Estoque produtos={produtos} listaEspera={listaEspera} />}
+            />
           </Routes>
         )}
       </main>
